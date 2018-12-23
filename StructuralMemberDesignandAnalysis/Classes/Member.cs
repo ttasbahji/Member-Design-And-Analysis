@@ -8,6 +8,8 @@ namespace StructuralMemberDesignandAnalysis.Classes
 {
     abstract class Member
     {
-        Member() {}  
+        Member() {}
+        double width;
+
     }
 }
