@@ -10,6 +10,8 @@ namespace StructuralMemberDesignandAnalysis.Classes
     {
         Member() {}
         double width;
+        double height;
+
 
     }
 }
