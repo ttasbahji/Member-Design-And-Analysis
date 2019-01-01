@@ -71,7 +71,7 @@
     <Compile Include="Classes\Member\Member.cs" />
     <Compile Include="Classes\Member\AnalyticMemberInterface.cs" />
     <Compile Include="Classes\Louver\Louver.cs" />
-    <Compile Include="New Folder\Demo.cs" />
+    <Compile Include="for Trail \Demo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -102,7 +102,7 @@
   <ItemGroup>
     <Folder Include="Classes\Member\" />
     <Folder Include="Classes\Louver\" />
-    <Folder Include="New Folder\" />
+    <Folder Include="for Trail \" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
