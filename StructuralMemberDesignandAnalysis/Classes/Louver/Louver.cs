@@ -1,12 +1,12 @@
 ﻿using System;
-namespace StructuralMemberDesignandAnalysis.Classes.Louver
+namespace StructuralMemberDesignandAnalysis.Classes
 
 {
     public class Louver : Member
     {
         public Louver() { }
 
-        class LouverBlade
+        public class LouverBlade
         {
 
 
@@ -153,8 +153,7 @@ namespace StructuralMemberDesignandAnalysis.Classes.Louver
             float Lady { get; set; }
             float Ladx { get; set; }
             float Ladc { get; set; }
-
-
+            
             float MaximumAllowableContinuousLengthLoadGenerated { get; set; }
             float MinimumContinuousLengthServiceabilityGenrated { get; set; }
 
