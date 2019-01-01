@@ -18,26 +18,50 @@ namespace StructuralMemberDesignandAnalysis.Classes.Louver
             /// 
             /// </summary>
             public string Model;
-
-
             /// <summary>
-            /// Note tutu : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
+             /// Note tutu habibi : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
             /// </summary>
             /// <param name="model">Model.</param>
+            /// <param name="material">Material.</param>
+            /// <param name="ix">Ix.</param>
+            /// <param name="iy">Iy.</param>
+            /// <param name="ic">Ic.</param>
+            /// <param name="sx">Sx.</param>
+            /// <param name="sy">Sy.</param>
+            /// <param name="sc">Sc.</param>
             /// <param name="allowedServiceabilityDeflection">Allowed serviceability deflection.</param>
+            /// <param name="area">Area.</param>
+            /// <param name="depth">Depth.</param>
+            /// <param name="fy">Fy.</param>
+            /// <param name="wTr">W tr.</param>
+            /// <param name="γ">Γ.</param>
+            /// <param name="deflectionLimit">Deflection limit.</param>
+            /// <param name="horizentalPressure">Horizental pressure.</param>
             /// <param name="lmax">Lmax.</param>
-            public LouverBlade(string model, float allowedServiceabilityDeflection, float lmax)
+            /// <param name="e">E.</param>
+            public LouverBlade(string model, string material, float ix, float iy, float ic, float sx, float sy, float sc, float allowedServiceabilityDeflection, float area, float depth, float fy, float wTr, float γ, float deflectionLimit, float horizentalPressure, float lmax, float e)
             {
                 Model = model;
+                Material = material;
+                Ix = ix;
+                Iy = iy;
+                Ic = ic;
+                Sx = sx;
+                Sy = sy;
+                Sc = sc;
                 AllowedServiceabilityDeflection = allowedServiceabilityDeflection;
+                Area = area;
+                Depth = depth;
+                Fy = fy;
+                WTr = wTr;
+                this.γ = γ;
+                DeflectionLimit = deflectionLimit;
+                HorizentalPressure = horizentalPressure;
                 Lmax = lmax;
-
-                SetUpLoverBlade();
+                E = e;
             }
 
             public string Material { get; set; }
-            public float Width { get; set; }
-            public float Height { get; set; }
 
             public float Ix { get; set; }
             public float Iy { get; set; }
