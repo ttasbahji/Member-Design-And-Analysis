@@ -69,7 +69,6 @@ namespace StructuralMemberDesignandAnalysis.Classes.Louver
 
         }
 
-
     }
 
 }
