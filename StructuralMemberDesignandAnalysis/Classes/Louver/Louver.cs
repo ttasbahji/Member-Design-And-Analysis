@@ -6,6 +6,237 @@ namespace StructuralMemberDesignandAnalysis.Classes.Louver
     {
         public Louver() { }
 
+        class LouverBlade
+        {
+
+
+
+
+            /// <summary>
+            /// Note to my tyseer , bro , Here the Db Will create the LoverBlade Object 
+            /// I Mean it Will the Give the Properties of the Blade Section by the name of the section UR Job BABy.
+            /// 
+            /// </summary>
+            public string Model;
+
+
+            /// <summary>
+            /// Note tutu : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
+            /// </summary>
+            /// <param name="model">Model.</param>
+            /// <param name="allowedServiceabilityDeflection">Allowed serviceability deflection.</param>
+            /// <param name="lmax">Lmax.</param>
+            public LouverBlade(string model, float allowedServiceabilityDeflection, float lmax)
+            {
+                Model = model;
+                AllowedServiceabilityDeflection = allowedServiceabilityDeflection;
+                Lmax = lmax;
+
+                SetUpLoverBlade();
+            }
+
+            public string Material { get; set; }
+            public float Width { get; set; }
+            public float Height { get; set; }
+
+            public float Ix { get; set; }
+            public float Iy { get; set; }
+            public float Ic { get; set; }
+
+            public float Sx { get; set; }
+            public float Sy { get; set; }
+            public float Sc { get; set; }
+
+            /// <summary>
+            /// change according to code of design
+            /// </summary>
+            /// <value>The allowed serviceability deflection.</value>
+            public float AllowedServiceabilityDeflection { get; set; }
+
+
+            public float Area { get; set; }
+            public float Depth { get; set; }
+
+            /// <summary>
+            /// design  
+            /// </summary>
+            /// <value>The fy.</value>
+            public float Fy { get; set; }
+            /// <summary>
+            /// tributary width
+            /// </summary>
+            /// <value>The WTr.</value>
+            public float WTr { get; set; }
+            /// <summary>
+            ///  is Unit Weight.
+            /// unit is Weight / Volume
+            /// </summary>
+            /// <value>The γ.</value>
+            public float γ { get; set; }
+
+
+            /// <summary>
+            /// accoring to code what is the limit for deflection 
+            /// </summary>
+            /// <value>The deflection limit.</value>
+            public float DeflectionLimit { get; set; }
+
+            /// <summary>
+            /// like wind Pressure 
+            /// Unit : Stress / Area
+            /// </summary>
+            /// <value>The horizental pressure.</value>
+            public float HorizentalPressure { get; set; }
+
+
+            public float Lmax { get; set; }
+
+            public float E { get; set; }
+
+
+            public bool NeedBladeSupport { get; set; }
+            public float SupportSpaceing { get; set; }
+            float DistributedHorizentalLoad { get; set; }
+
+            /// <summary>
+            /// Maxim. Bending Moment  occuring
+            /// </summary>
+            /// <value>The max bending moment.</value>
+            float MaxBendingMoment { get; set; }
+
+            /// <summary>
+            /// Nominal Flexural Strength               
+            /// </summary>
+            float Mny { get; set; }
+            float Mnx { get; set; }
+            float Mnc { get; set; }
+
+
+            float MinimumMomentCapacity { get; set; }
+
+
+            float Δy { get; set; }
+            float Δx { get; set; }
+            float Δc { get; set; }
+            float MaxDeflection { get; set; }
+
+
+
+            /// <summary>
+            /// Allowable Continuous Length  
+            /// </summary>
+            /// <value>The lady.</value>
+            float Lady { get; set; }
+            float Ladx { get; set; }
+            float Ladc { get; set; }
+
+
+            float MaximumAllowableContinuousLengthLoadGenerated { get; set; }
+            float MinimumContinuousLengthServiceabilityGenrated { get; set; }
+
+            public void SetUpLoverBlade()
+            {
+                // simple Supported BEam Assump
+
+                DistributedHorizentalLoad = HorizentalPressure * WTr;
+                MaxBendingMoment = DistributedHorizentalLoad * Lmax * Lmax;
+
+                Mny = Fy * Sy;
+                Mnx = Fy * Sx;
+                Mnc = Fy * Sc;
+
+                // check Moment 
+                MinimumMomentCapacity = Math.Min(Mny, Math.Min(Mnx, Mnx));
+
+
+                Lady = (float)Math.Sqrt((8 * Mny) / DistributedHorizentalLoad);// this called casting bro cuz the value  will be double not float
+                Ladx = (float)Math.Sqrt((8 * Mnx) / DistributedHorizentalLoad);// this called casting bro cuz the value  will be double not float
+                Ladc = (float)Math.Sqrt((8 * Mnc) / DistributedHorizentalLoad);// this called casting bro cuz the value  will be double not float
+
+                MaximumAllowableContinuousLengthLoadGenerated = Math.Min(Lady, Math.Min(Ladc, Ladx));
+
+
+                // servicbility check
+                Δy = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Iy * 384));
+                Δx = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Ix * 384));
+                Δc = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Ic * 384));
+
+                MaxDeflection = Math.Max(Δy, Math.Max(Δx, Δc));
+
+                CheckSpacingMoment();
+
+            }
+
+
+
+            void CheckSpacingMoment()
+            {
+                if (MaximumAllowableContinuousLengthLoadGenerated > Lmax)
+                {
+                    NeedBladeSupport = false;
+
+                    CheckSpacingDeflection();
+
+                }
+                else
+                {
+
+
+                    NeedBladeSupport = true;
+
+
+                    // try again by dividing the length by two till u get the goal we all want
+                    Lmax = Lmax / 2;
+
+
+                    SetUpLoverBlade();
+
+                }
+
+
+
+            }
+
+            void CheckSpacingDeflection()
+            {
+
+                if (MaxDeflection < AllowedServiceabilityDeflection)
+                {
+                    NeedBladeSupport = false;
+
+                    // here we will report Result what happend with u PC 
+                    ReportResult();
+
+
+                }
+                else
+                {
+                    // try again by dividing the length by two till u get the goal we all want
+
+                    NeedBladeSupport = true;
+
+                    // here we will report Result what happend with u PC 
+                    ReportResult();
+
+                    Lmax = Lmax / 2;
+
+
+
+                    SetUpLoverBlade();
+                }
+
+
+
+            }
+
+
+            void ReportResult()
+            {
+                //todo 
+            }
+
+
+        }
 
 
         public override void AnalyticCompressionCapacity()
@@ -49,7 +280,7 @@ namespace StructuralMemberDesignandAnalysis.Classes.Louver
         }
 
 
-       
+
 
         public class LouverAnchors : Member.Connection
         {
