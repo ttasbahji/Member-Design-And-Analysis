@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace StructuralMemberDesignandAnalysis.Classes
 {
-    abstract class Member
+
+public interface AnalyticMemberInterface
+
     {
-        Member() {}
-        double width;
-        double height;
+    void AnalyticMomentCapacity();
+    void AnalyticShearCapacity();
+    void AnalyticTensionCapacity();
+    void AnalyticCompressionCapacity();
 
 
     }
