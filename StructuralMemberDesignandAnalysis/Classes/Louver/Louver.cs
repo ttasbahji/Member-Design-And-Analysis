@@ -7,6 +7,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
         public Louver() { }
 
         public class LouverBlade
+
         {
 
 
@@ -153,7 +154,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             float Lady { get; set; }
             float Ladx { get; set; }
             float Ladc { get; set; }
-            
+
             float MaximumAllowableContinuousLengthLoadGenerated { get; set; }
             float MinimumContinuousLengthServiceabilityGenrated { get; set; }
 
