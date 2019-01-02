@@ -16,7 +16,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
 
-        public class ReadySection
+        public abstract class ReadySection : SubMemberCycleInterface
         {
             public ReadySection()
             {
@@ -25,14 +25,11 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public string Material { get; set; }
             public string Code { get; set; }
 
-
-
-
-
+            public abstract void SetUpSubMember();
         }
 
 
-        public class BuildUpSetion
+        public abstract class BuildUpSetion : SubMemberCycleInterface
         {
             public BuildUpSetion()
             {
@@ -53,13 +50,9 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public float DesignTensileStress { get; set; }
             public float DesignCompressionStress { get; set; }
 
-
-
-
-
-
+            public abstract void SetUpSubMember();
         }
-        public partial class Connection
+        public abstract class Connection : SubMemberCycleInterface
         {
             public Connection()
             {
@@ -73,10 +66,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public float DesignTensileStress { get; set; }
             public float DesignCompressionStress { get; set; }
 
-
-
-          
-
+            public abstract void SetUpSubMember();
         }
         public abstract void DesignMomentCapacity();
         public abstract void DesignShearCapacity();

@@ -6,8 +6,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
     {
         public Louver() { }
 
-        public class LouverBlade
-
+        public class LouverBlade : ReadySection
         {
 
 
@@ -20,7 +19,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             /// </summary>
             public string Model;
             /// <summary>
-             /// Note tutu habibi : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
+            /// Note tutu habibi : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
             /// </summary>
             /// <param name="model">Model.</param>
             /// <param name="material">Material.</param>
@@ -62,7 +61,6 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 E = e;
             }
 
-            public string Material { get; set; }
 
             public float Ix { get; set; }
             public float Iy { get; set; }
@@ -158,7 +156,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             float MaximumAllowableContinuousLengthLoadGenerated { get; set; }
             float MinimumContinuousLengthServiceabilityGenrated { get; set; }
 
-            public void SetUpLoverBlade()
+            public void CheckLoverBladeSupportNeed()
             {
                 // simple Supported BEam Assump
 
@@ -209,11 +207,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
                     NeedBladeSupport = true;
 
 
-                    // try again by dividing the length by two till u get the goal we all want
-                    Lmax = Lmax / 2;
-
-
-                    SetUpLoverBlade();
+                    CheckLoverBladeSupportNeed();
 
                 }
 
@@ -228,25 +222,25 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 {
                     NeedBladeSupport = false;
 
-                    // here we will report Result what happend with u PC 
-                    ReportResult();
+                    // Succeeded
+                    //HelperMemberDesignAnalysis.HelperResultExporter.HelperResultExporterInstance.PrepareObjectToExport();
+                    PassData.LouverList.Add(this);// since there is not object with in our louverblade
 
 
                 }
                 else
                 {
-                    // try again by dividing the length by two till u get the goal we all want
-
                     NeedBladeSupport = true;
 
-                    // here we will report Result what happend with u PC 
-                    ReportResult();
+                    // Fail 
+                    //HelperMemberDesignAnalysis.HelperResultExporter.HelperResultExporterInstance.PrepareObjectToExport();
+                    PassData.LouverList.Add(this.ShallowCopy());// since there is not object with in our louverblade
 
+
+                    // try again by dividing the length by two till u get the goal we all want
                     Lmax = Lmax / 2;
 
-
-
-                    SetUpLoverBlade();
+                    CheckLoverBladeSupportNeed();
                 }
 
 
@@ -254,11 +248,28 @@ namespace StructuralMemberDesignandAnalysis.Classes
             }
 
 
-            void ReportResult()
+            void ReportResult(string ExporterType)
             {
-                //todo 
+
+
+
+
+
             }
 
+            public override void SetUpSubMember()
+            {
+                CheckLoverBladeSupportNeed();
+            }
+
+
+
+            public LouverBlade ShallowCopy()
+            {
+                LouverBlade LouverBlade = (LouverBlade)this.MemberwiseClone();
+               
+                return LouverBlade;
+            }
 
         }
 
@@ -306,22 +317,28 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
 
-        public class LouverAnchors : Member.Connection
+        public class LouverAnchors : Connection
         {
-
-
+            public override void SetUpSubMember()
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public class BuildUpLouver : Member.BuildUpSetion
+        public class BuildUpLouver : BuildUpSetion
         {
-
-
+            public override void SetUpSubMember()
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public class ReadSectionLouver : Member.ReadySection
+        public class ReadySectionLouver : ReadySection
         {
-
-
+            public override void SetUpSubMember()
+            {
+                throw new NotImplementedException();
+            }
         }
 
     }
