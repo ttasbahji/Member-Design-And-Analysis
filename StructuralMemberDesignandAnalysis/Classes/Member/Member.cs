@@ -11,8 +11,8 @@ namespace StructuralMemberDesignandAnalysis.Classes
    public abstract class Member : DesignMemberInterface, AnalyticMemberInterface
     {
       public  Member() { }
-        public double Width { get; set; }
-        public double Height { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
 
 
 

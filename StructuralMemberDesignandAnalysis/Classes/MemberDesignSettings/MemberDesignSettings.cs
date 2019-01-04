@@ -12,16 +12,20 @@ namespace StructuralMemberDesignandAnalysis.Classes
         //for Future
         //public string LangaugeType { set; get; }
 
-        public string UnitsType { set; get; }
+
+
+        // todo TUTU SI Units or  IP Units
+        public string UnitsType { set; get; } = MemberDesignText.UnitsType.IPUnits ;
 
         // default Value Set to be the Desktop bro
         public string ExportedFileFolderPath { set; get; } = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
         // default 
-        public string ExportedFileName { set; get; } = "Result";
+        public string ExportedFileName { set; get; } = MemberDesignText.ExportersTypes.DefaultExportedFileName;
 
-        // default 
-        //public  string FullExportedFilePath { set; get; } = 
+
+
+
         public string FullExportedFilePath
         {
             get
