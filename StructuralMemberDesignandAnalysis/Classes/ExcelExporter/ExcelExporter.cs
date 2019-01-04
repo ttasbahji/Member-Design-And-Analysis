@@ -87,7 +87,9 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 {
                     LouverExcelWorkBookinstance = null;
 
-                    // THis topic Is Called Garbage Collection BRO // Watch about interesting
+                    // THis topic Is Called Garbage Collection BRO 
+                    // Watch about interesting
+
                     GC.Collect();
                 }
                 catch (Exception Ex)
@@ -98,39 +100,41 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
 
-            private void GenerateBladeLouverSheet(Louver.LouverBlade LouverBlade)
+            public void GenerateBladeLouverSheet(Louver.LouverBlade LouverBlade)
             {
                 Application app = new Application();
                 app.Visible = true;
                 app.WindowState = XlWindowState.xlMaximized;
 
-                Workbook wb = app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
-                Worksheet ws = wb.Worksheets[1] as Worksheet;
-                DateTime currentDate = DateTime.Now;
+                //Workbook wb = app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+                //Worksheet ws = wb.Worksheets[1] as Worksheet;
+                //DateTime currentDate = DateTime.Now;
+                //ws.Name=LouverBlade.
+                //ws.Range["A1:A3"].Value = "Who is number one? ";
+                //ws.Range["A4"].Value = "vitoshacademy.com";
+                //ws.Range["A5"].Value = currentDate;
+                //ws.Range["B6"].Value = "Tommorow's date is: =>";
+                //ws.Range["C6"].FormulaLocal = "= A5 + 1";
+                //ws.Range["A7"].FormulaLocal = "=SUM(D1:D10)";
+                //for (int i = 1; i <= 10; i++)
+                //    ws.Range["D" + i].Value = i * 2;
 
-                ws.Range["A1:A3"].Value = "Who is number one? 🙂";
-                ws.Range["A4"].Value = "vitoshacademy.com";
-                ws.Range["A5"].Value = currentDate;
-                ws.Range["B6"].Value = "Tommorow's date is: =>";
-                ws.Range["C6"].FormulaLocal = "= A5 + 1";
-                ws.Range["A7"].FormulaLocal = "=SUM(D1:D10)";
-                for (int i = 1; i <= 10; i++)
-                    ws.Range["D" + i].Value = i * 2;
+                //wb.SaveAs("C:\\Temp\\vitoshacademy.xlsx");
 
-                wb.SaveAs("C:\\Temp\\vitoshacademy.xlsx");
+
 
             }
-            private void GenerateBuildUpLouverSheet(Louver.BuildUpLouver BuildUpLouver)
+            public void GenerateBuildUpLouverSheet(Louver.BuildUpLouver BuildUpLouver)
             {
                 //todo
             }
-            private void GenerateReadySectionLouverSheet(Louver.ReadySectionLouver ReadySectionLouver)
+            public void GenerateReadySectionLouverSheet(Louver.ReadySectionLouver ReadySectionLouver)
             {
                 //todo
 
 
             }
-            private void GenerateLouverAnchorsSheet(Louver.LouverAnchors LouverAnchors)
+            public void GenerateLouverAnchorsSheet(Louver.LouverAnchors LouverAnchors)
             {
 
                 //todo
@@ -182,11 +186,24 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
         void SaveWorkBook(Workbook CurrentWorkBook, string FullPathWorkBook)
         {
-
-            CurrentWorkBook.SaveAs(MemberDesignSettings.MemberDesignSettingsInstance.FullExportedFilePath);
-
+                CurrentWorkBook.Close();
+                CurrentWorkBook.SaveAs(FullPathWorkBook);
 
         }
+
+        public void InsertImageExcel (Worksheet CurrentWorkSheet)
+        {
+
+        }
+
+
+        public void CustomizeExcelTableSheet(Worksheet CurrentWorksheet, Range TableRange)
+        {
+
+        }
+
     }
+
+
 }
 

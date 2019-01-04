@@ -17,7 +17,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             /// I Mean it Will the Give the Properties of the Blade Section by the name of the section UR Job BABy.
             /// 
             /// </summary>
-            public string Model;
+            public string Model { get; set; }
             /// <summary>
             /// Note tutu habibi : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
             /// </summary>
@@ -61,6 +61,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 E = e;
             }
 
+            public string CalculationType { get; set; }
 
             public float Ix { get; set; }
             public float Iy { get; set; }
@@ -203,11 +204,11 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 else
                 {
 
+                    // Fail 
 
                     NeedBladeSupport = true;
 
-
-                    CheckLoverBladeSupportNeed();
+                    CheckSpacingDeflection();
 
                 }
 
@@ -218,35 +219,55 @@ namespace StructuralMemberDesignandAnalysis.Classes
             void CheckSpacingDeflection()
             {
 
-                if (MaxDeflection < AllowedServiceabilityDeflection)
-                {
-                    NeedBladeSupport = false;
+                    LouverFilterData FilterData = new LouverFilterData();
 
-                    // Succeeded
-                    //HelperMemberDesignAnalysis.HelperResultExporter.HelperResultExporterInstance.PrepareObjectToExport();
-                    PassData.LouverList.Add(this);// since there is not object with in our louverblade
+                    if (MaxDeflection < AllowedServiceabilityDeflection)
+                    {
 
-
-                }
-                else
-                {
-                    NeedBladeSupport = true;
-
-                    // Fail 
-                    //HelperMemberDesignAnalysis.HelperResultExporter.HelperResultExporterInstance.PrepareObjectToExport();
-                    PassData.LouverList.Add(this.ShallowCopy());// since there is not object with in our louverblade
+                        // Succeeded
+                        NeedBladeSupport = false;
 
 
-                    // try again by dividing the length by two till u get the goal we all want
-                    Lmax = Lmax / 2;
+                        FilterData.CheckAddibilityLouverobject(this);
 
-                    CheckLoverBladeSupportNeed();
-                }
+
+                    }
+                    else
+                    {
+
+                        // fail 
+                        NeedBladeSupport = true;
+
+                        FilterData.CheckAddibilityLouverobject(this.ShallowCopy());// since there is not object with in our louverblade
+
+                        //do again wtih different length
+                        DecreaseLourverLength();
+
+                    if (CalculationType == MemberDesignText.CalculationType.GetCheckCalculationType)
+                        return;
+
+                        CheckLoverBladeSupportNeed();
+
+
+                    }
+
+
+
+
+
+
 
 
 
             }
 
+            // here the we decrease the Length
+            void DecreaseLourverLength()
+            { 
+            // try again by dividing the length by two till u get the goal we all want
+            Lmax = Lmax / 2;
+
+            }
 
             void ReportResult(string ExporterType)
             {
@@ -276,42 +297,34 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
         public override void AnalyticCompressionCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void AnalyticMomentCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void AnalyticShearCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void AnalyticTensionCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void DesignCompressionCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void DesignMomentCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void DesignShearCapacity()
         {
-            throw new NotImplementedException();
         }
 
         public override void DesignTensionCapacity()
         {
-            throw new NotImplementedException();
         }
 
 
@@ -319,6 +332,44 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
         public class LouverAnchors : Connection
         {
+
+            /// <summary>
+            /// 3/8" KWIK BOLT TZ   , #10-16 KWIK FLEX SELF DRILLING  ... ETC                                                  
+            /// </summary>
+            /// <value>The type of the connection.</value>
+            public string ConnectionType { get; set; }
+
+            /// <summary>
+            /// where u get the info from the drawings
+            /// </summary>
+            /// <value>The mark up refrence.</value>
+            public string MarkUpRefrence { get; set; }
+
+
+            /// <summary>
+            ///This Equal to Side in xls
+            /// </summary>
+            /// <value>The connection location.</value>
+            public string ConnectionLocation { get; set; }
+
+           
+
+            /// <summary>
+            /// GMC , Cracked Concrete
+            /// </summary>
+            /// <value>The base material.</value>
+            public string BaseMaterial { get; set; }
+
+            /// <summary>
+            /// #10-16 KWIK FLEX SELF DRILLING Etc                           
+            /// </summary>
+            /// <value>The alt material.</value>
+            public string AltMaterial { get; set; }
+
+
+
+
+
             public override void SetUpSubMember()
             {
                 throw new NotImplementedException();
