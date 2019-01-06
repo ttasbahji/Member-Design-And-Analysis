@@ -62,12 +62,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
                     break;
-                case Louver.ReadySectionLouver ReadySectionLouver:
-
-
-
-
-                    break;
+               
                 case Louver.LouverAnchors LouverAnchors:
 
 

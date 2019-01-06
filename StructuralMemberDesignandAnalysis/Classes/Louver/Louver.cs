@@ -4,26 +4,39 @@ namespace StructuralMemberDesignandAnalysis.Classes
 {
     public class Louver : Member
     {
-        public Louver() { }
+        LouverAnalysis CurrentLouverAnalysis;
+        public float γ { get; set; }
+
+        public float Thickness { get; set; }
+
+        public float NorthSideLoadRatio { get; set; } = 1;
+        public float SouthSideLoadRatio { get; set; } = 1;
+        public float EastSideLoadRatio { get; set; } = 1;
+        public float WestSideLoadRatio { get; set; } = 1;
 
         public Louver(LouverLoad louverLoad, LouverBlade loverBlade
         , LouverAnchors northLouverAnchor, LouverAnchors eastLouverAnchor
-            , LouverAnchors westLouverAnchor, LouverAnchors southLouverAnchor)
+            , LouverAnchors westLouverAnchor, LouverAnchors southLouverAnchor
+            , LouverAnalysis CurrentLouverAnalysis)
         {
             LouverLoad = louverLoad;
             LoverBlade = loverBlade;
+
+            this.CurrentLouverAnalysis = CurrentLouverAnalysis;
+
             NorthLouverAnchor = northLouverAnchor;
             EastLouverAnchor = eastLouverAnchor;
             WestLouverAnchor = westLouverAnchor;
             SouthLouverAnchor = southLouverAnchor;
+
         }
 
 
         // two Way , One Way
-        public String LouverLoadType;
+        public string LouverLoadType;
 
 
-       
+
         LouverLoad LouverLoad;
         LouverBlade LoverBlade;
         LouverAnchors NorthLouverAnchor;
@@ -34,29 +47,35 @@ namespace StructuralMemberDesignandAnalysis.Classes
         public class LouverBlade : ReadySection
         {
 
-            LouverLoad CurrentLouverLoad { set; get; }
-            LouverBladeProperty CurrentLouverBladeProperty { set; get; }
+            public LouverLoad CurrentLouverLoad { set; get; }
+            public LouverBladeProperty CurrentLouverBladeProperty { set; get; }
+            public Louver CurrentLouver { set; get; }
 
-          
-            public LouverBlade(float allowedServiceabilityDeflection, float deflectionLimit, float lmax, LouverBladeProperty CurrentLouverBlade,LouverLoad currentLouverLoad)
+
+            public LouverBlade(float allowedServiceabilityDeflection
+            , float deflectionLimit, float lmax
+                , LouverBladeProperty CurrentLouverBlade
+                , LouverLoad currentLouverLoad, Louver CurrentLouver)
             {
-               
-              
+
+
                 AllowedServiceabilityDeflection = allowedServiceabilityDeflection;
-              
+
                 DeflectionLimit = deflectionLimit;
                 Lmax = lmax;
 
                 CurrentLouverLoad = currentLouverLoad;
-                HorizentalPressure=currentLouverLoad.HorizentalDistributedLoad;
+                HorizentalPressure = currentLouverLoad.HorizentalDistributedLoad;
                 this.CurrentLouverBladeProperty = CurrentLouverBlade;
+
+                this.CurrentLouver = CurrentLouver;
             }
 
 
 
             public string CalculationType { get; set; }
 
-          
+
 
             /// <summary>
             /// change according to code of design
@@ -65,7 +84,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public float AllowedServiceabilityDeflection { get; set; }
 
 
-          
+
 
 
             /// <summary>
@@ -248,6 +267,8 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
             public override void SetUpSubMember()
             {
+                // pass the UnitWeight
+                CurrentLouver.γ = this.CurrentLouverBladeProperty.γ;
                 CheckLoverBladeSupportNeed();
             }
 
@@ -258,12 +279,12 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 LouverBlade LouverBlade = (LouverBlade)this.MemberwiseClone();
 
                 LouverBlade.CurrentLouverBladeProperty = new LouverBladeProperty(CurrentLouverBladeProperty.Model, CurrentLouverBladeProperty.Material
-                , CurrentLouverBladeProperty.Ix, CurrentLouverBladeProperty.Iy, CurrentLouverBladeProperty.Ic, CurrentLouverBladeProperty.Sx,CurrentLouverBladeProperty.Sy,
-                    CurrentLouverBladeProperty.Sc, CurrentLouverBladeProperty.Area, CurrentLouverBladeProperty.Depth, CurrentLouverBladeProperty.E,CurrentLouverBladeProperty.Fy
-                , CurrentLouverBladeProperty.WTr,CurrentLouverBladeProperty.γ);
+                , CurrentLouverBladeProperty.Ix, CurrentLouverBladeProperty.Iy, CurrentLouverBladeProperty.Ic, CurrentLouverBladeProperty.Sx, CurrentLouverBladeProperty.Sy,
+                    CurrentLouverBladeProperty.Sc, CurrentLouverBladeProperty.Area, CurrentLouverBladeProperty.Depth, CurrentLouverBladeProperty.E, CurrentLouverBladeProperty.Fy
+                , CurrentLouverBladeProperty.WTr, CurrentLouverBladeProperty.γ);
+
 
                 LouverBlade.CurrentLouverLoad = new LouverLoad(CurrentLouverLoad.HorizentalDistributedLoad);
-
 
                 return LouverBlade;
             }
@@ -333,18 +354,19 @@ namespace StructuralMemberDesignandAnalysis.Classes
             }
 
 
-            }
+        }
 
 
-      
+
 
         public class LouverAnchors : Connection
         {
 
-            LouverLoad CurrentLouverLoad; 
+            LouverLoad CurrentLouverLoad;
+            public float SideLoadRatio { get; set; } = 1;
 
             public LouverAnchors(string markUpRefrence, string connectionLocation, string baseMaterial, string altMaterial
-            , ConnectionType connectionTypeBase, ConnectionType connectionTypeAlt , LouverLoad CurrentLouverLoad)
+            , ConnectionType connectionTypeBase, ConnectionType connectionTypeAlt, LouverLoad CurrentLouverLoad, ref float SideLoadRatio, ref Louver CurrentLouver)
             {
                 MarkUpRefrence = markUpRefrence;
                 ConnectionLocation = connectionLocation;
@@ -352,8 +374,9 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 AltMaterial = altMaterial;
                 ConnectionTypeBase = connectionTypeBase;
                 ConnectionTypeAlt = connectionTypeAlt;
-
                 this.CurrentLouverLoad = CurrentLouverLoad;
+                this.SideLoadRatio = SideLoadRatio;
+                this.CurrentLouver = CurrentLouver;
             }
 
 
@@ -363,14 +386,18 @@ namespace StructuralMemberDesignandAnalysis.Classes
             // to structure SIde
             public ConnectionType ConnectionTypeBase { get; set; }
 
+            public float WeightLoadArea { get; set; }
+            public float SurfacePressure { get; set; }
 
             /// will be Calculated from Analyze method
 
             public float ShearReaction { set; get; }
 
-            public float NormalReaction{ set; get; }
+            public float NormalReaction { set; get; }
 
             public float MomentReaction { set; get; }
+            public Louver CurrentLouver { set; get; }
+            public float LoadCheckRatio { set; get; }
 
 
             /// <summary>
@@ -380,14 +407,28 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public string MarkUpRefrence { get; set; }
 
 
+            public float BaseInnerSpacing { get; set; }
+            public float AltInnerSpacing { get; set; }
+
+            public float BaseEdgeSpacing { get; set; }
+            public float AltEdgeSpacing { get; set; }
+
+
             /// <summary>
             ///This Equal to Side in xls north ,east or west
             /// </summary>
             /// <value>The connection location.</value>
             public string ConnectionLocation { get; set; }
 
+            public int RequiredBoltsNumberAlt { get; set; }
+            public int RequiredBoltsNumberBase { get; set; }
 
 
+            public float SingleBoltStrengthShearRatioAlt { get; set; }
+            public float SingleBoltStrengthShearRatioBase { get; set; }
+
+            public float SingleBoltStrengthNormalRatioAlt { get; set; }
+            public float SingleBoltStrengthNormalRatioBase { get; set; }
             ///note : bro when the user choose BaseMaterial or AltMaterial  (Gmc or concrete )the list of bolts or anchors will be generated according
             /// to his choice
 
@@ -412,15 +453,15 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
                 public AnchorBoltProperties AnchorBoltProperty { set; get; }
 
-                public ConnectionType( AnchorBoltProperties anchorBoltsProperties )
+                public ConnectionType(AnchorBoltProperties anchorBoltsProperties)
                 {
                     AnchorBoltProperty = anchorBoltsProperties;
 
                 }
 
-               
+
                 // From DB TUTu
-                public class AnchorBoltProperties 
+                public class AnchorBoltProperties
                 {
 
                     public AnchorBoltProperties(float dbt, float lbt, float lbe, float fuT, float fdT, float fuS, float fdS)
@@ -449,34 +490,163 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
             }
 
+            void SetUpAppliedPressure()
+            {
+                WeightLoadArea = (CurrentLouver.γ) * (CurrentLouver.Thickness);
+                SurfacePressure = CurrentLouverLoad.HorizentalDistributedLoad;
+
+
+            }
 
             void AnalyzeLouverLoad()
             {
+                switch (ConnectionLocation)
+                {
+                    case MemberDesignText.LouverStrings.NorthSideConnection:
+
+                        DoNorthSideConnectionReactionCalculation();
+                        break;
+                    case MemberDesignText.LouverStrings.SouthSideConnection:
+                        DoSouthSideConnectionReactionCalculation();
+                        break;
+                    case MemberDesignText.LouverStrings.EastSideConnection:
+                        DoEastSideConnectionReactionCalculation();
+                        break;
+                    case MemberDesignText.LouverStrings.WestSideConnection:
+                        DoWestSideConnectionReactionCalculation();
+                        break;
+                    default:
+                        Console.WriteLine("if not Suit do this");
+                        break;
+                }
+
+
+
+
 
 
             }
+            void DoNorthSideConnectionReactionCalculation()
+            {
+                NormalReaction = WeightLoadArea * CurrentLouver.Width * CurrentLouver.NorthSideLoadRatio * CurrentLouver.Height * (1 / 2);
+                ShearReaction = SurfacePressure * CurrentLouver.Width * CurrentLouver.NorthSideLoadRatio * CurrentLouver.Height * (1 / 2);
+
+            }
+
+            void DoSouthSideConnectionReactionCalculation()
+            {
+                NormalReaction = WeightLoadArea * CurrentLouver.Width * CurrentLouver.SouthSideLoadRatio * CurrentLouver.Height * (1 / 2);
+                ShearReaction = SurfacePressure * CurrentLouver.Width * CurrentLouver.SouthSideLoadRatio * CurrentLouver.Height * (1 / 2);
 
 
+            }
+            void DoEastSideConnectionReactionCalculation()
+            {
+                ShearReaction = WeightLoadArea * CurrentLouver.Width * CurrentLouver.EastSideLoadRatio * CurrentLouver.Height * (1 / 2);
+                NormalReaction = SurfacePressure * CurrentLouver.Width * CurrentLouver.EastSideLoadRatio * CurrentLouver.Height * (1 / 2);
 
-            void CheckAnchorLoad()
+
+            }
+            void DoWestSideConnectionReactionCalculation()
             {
 
+                ShearReaction = WeightLoadArea * CurrentLouver.Width * CurrentLouver.WestSideLoadRatio * CurrentLouver.Height * (1 / 2);
+                NormalReaction = SurfacePressure * CurrentLouver.Width * CurrentLouver.WestSideLoadRatio * CurrentLouver.Height * (1 / 2);
 
+            }
+
+
+            void CheckGroupBoltsStrength()
+            {
+
+                float ApproxmateRequiredBoltsNumberAlt = (ShearReaction / ConnectionTypeAlt.AnchorBoltProperty.FdS)
+                + (NormalReaction / ConnectionTypeAlt.AnchorBoltProperty.FdT);
+
+                // thus
+
+                RequiredBoltsNumberAlt = (int)Math.Round((ApproxmateRequiredBoltsNumberAlt + 0.5));
+
+
+                float ApproxmateRequiredBoltsNumberBase = (ShearReaction / ConnectionTypeBase.AnchorBoltProperty.FdS)
+             + (NormalReaction / ConnectionTypeBase.AnchorBoltProperty.FdT);
+
+                // thus
+
+                RequiredBoltsNumberBase = (int)Math.Round((ApproxmateRequiredBoltsNumberBase + 0.5));
+
+
+            }
+            void CheckSingleBoltStrength()
+            {
+
+                SingleBoltStrengthShearRatioAlt = (ShearReaction / RequiredBoltsNumberAlt) / ConnectionTypeAlt.AnchorBoltProperty.FdS;
+                SingleBoltStrengthShearRatioBase = (ShearReaction / RequiredBoltsNumberBase) / ConnectionTypeBase.AnchorBoltProperty.FdS;
+
+
+                SingleBoltStrengthNormalRatioAlt = (NormalReaction / RequiredBoltsNumberAlt) / ConnectionTypeAlt.AnchorBoltProperty.FdT;
+                SingleBoltStrengthNormalRatioBase = (NormalReaction / RequiredBoltsNumberBase) / ConnectionTypeBase.AnchorBoltProperty.FdT;
 
 
 
             }
-
             void CheckInnerAnhcorSpacing()
             {
 
+                if (ConnectionLocation == MemberDesignText.LouverStrings.NorthSideConnection 
+                || ConnectionLocation == MemberDesignText.LouverStrings.SouthSideConnection)
+                {
+                    float ExactBaseInnerSpacing = RequiredBoltsNumberBase / (CurrentLouver.Width);
+                    float ExactAltInnerSpacing = RequiredBoltsNumberAlt / (CurrentLouver.Width);
+                    // here we will write the Algo
 
 
+                    BaseInnerSpacing = ExactBaseInnerSpacing;
+                    AltInnerSpacing = ExactAltInnerSpacing;
+
+
+                }
+                else
+                {
+                    float ExactBaseInnerSpacing = RequiredBoltsNumberBase / (CurrentLouver.Height);
+                    float ExactAltInnerSpacing = RequiredBoltsNumberAlt / (CurrentLouver.Height);
+
+                    // here we will write the Algo
+
+                    BaseInnerSpacing = ExactBaseInnerSpacing;
+                    AltInnerSpacing = ExactAltInnerSpacing;
+
+
+
+                }
             }
             void CheckEdgeAnchorSpacing()
             {
 
 
+                if (ConnectionLocation == MemberDesignText.LouverStrings.NorthSideConnection
+                || ConnectionLocation == MemberDesignText.LouverStrings.SouthSideConnection)
+                {
+                    float ExactBaseEdgeSpacing = (CurrentLouver.Width) - (RequiredBoltsNumberBase * BaseInnerSpacing);
+                    float ExactAltInnerSpacing = (CurrentLouver.Width) - (RequiredBoltsNumberAlt *AltInnerSpacing) ;
+
+                    // todo 
+                    // here we will write the Algo
+                    BaseEdgeSpacing = ExactBaseEdgeSpacing;
+                    AltEdgeSpacing = ExactBaseEdgeSpacing;
+
+
+                }
+                else
+                {
+                    float ExactBaseEdgeSpacing = (CurrentLouver.Height) - (RequiredBoltsNumberBase * BaseInnerSpacing);
+                    float ExactAltInnerSpacing = (CurrentLouver.Height) - (RequiredBoltsNumberAlt * AltInnerSpacing);
+
+                    // here we will write the Algo
+                    BaseEdgeSpacing = ExactBaseEdgeSpacing;
+                    AltEdgeSpacing = ExactBaseEdgeSpacing;
+
+
+                }
 
             }
 
@@ -486,7 +656,13 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
             public override void SetUpSubMember()
             {
-                throw new NotImplementedException();
+                SetUpAppliedPressure();
+                AnalyzeLouverLoad();
+                CheckGroupBoltsStrength();
+                CheckSingleBoltStrength();
+                CheckInnerAnhcorSpacing();
+                CheckEdgeAnchorSpacing();
+
             }
         }
 
@@ -535,29 +711,33 @@ namespace StructuralMemberDesignandAnalysis.Classes
         public override void SetUpMember()
         {
 
-
+            this.LoverBlade.SetUpSubMember();
             this.NorthLouverAnchor.SetUpSubMember();
             this.SouthLouverAnchor.SetUpSubMember();
             this.EastLouverAnchor.SetUpSubMember();
             this.WestLouverAnchor.SetUpSubMember();
-            this.LoverBlade.SetUpSubMember();
 
 
         }
 
-        public class LouverFrame 
+        public class LouverAnalysis
         {
 
+
+            public LouverAnalysis(ref Louver CurrentLover)
+            {
+                Width = CurrentLover.Width;
+                Height = CurrentLover.Height;
+                Thickness = CurrentLover.Thickness;
+
+
+            }
+            Louver CurrentLover { get; set; }
             public float Width { get; set; }
             public float Height { get; set; }
             public float Thickness { get; set; }
             public string DistributionLoadType { get; set; }
-            public float NorthSideLoadRatio { get; set; }
-            public float SouthSideLoadRatio { get; set; }
-            public float EastSideLoadRatio { get; set; }
-            public float WestSideLoadRatio { get; set; }
             public bool WidthIsLongest { get; set; } = false;
-            public float γ { get; set; }
 
             void CheckLouverType()
             {
@@ -596,29 +776,29 @@ namespace StructuralMemberDesignandAnalysis.Classes
                 if (DistributionLoadType == MemberDesignText.LouverStrings.OneWayLouverText && WidthIsLongest)
                 {
 
-                    NorthSideLoadRatio = 0.5f;
-                    SouthSideLoadRatio = 0.5f;
-                    WestSideLoadRatio = 1;
-                    EastSideLoadRatio = 1;
+                    CurrentLover.NorthSideLoadRatio = 0.5f;
+                    CurrentLover.SouthSideLoadRatio = 0.5f;
+                    CurrentLover.WestSideLoadRatio = 1;
+                    CurrentLover.EastSideLoadRatio = 1;
 
 
                 }
                 else if (DistributionLoadType == MemberDesignText.LouverStrings.OneWayLouverText && !WidthIsLongest)
                 {
-                    NorthSideLoadRatio = 1;
-                    SouthSideLoadRatio = 1;
-                    WestSideLoadRatio = 0.5f;
-                    EastSideLoadRatio = 0.5f;
+                    CurrentLover.NorthSideLoadRatio = 1;
+                    CurrentLover.SouthSideLoadRatio = 1;
+                    CurrentLover.WestSideLoadRatio = 0.5f;
+                    CurrentLover.EastSideLoadRatio = 0.5f;
 
                 }
                 else
                 {
 
 
-                    NorthSideLoadRatio = 0.5f;
-                    SouthSideLoadRatio = 0.5f;
-                    WestSideLoadRatio = 0.5f;
-                    EastSideLoadRatio = 0.5f;
+                    CurrentLover.NorthSideLoadRatio = 0.5f;
+                    CurrentLover.SouthSideLoadRatio = 0.5f;
+                    CurrentLover.WestSideLoadRatio = 0.5f;
+                    CurrentLover.EastSideLoadRatio = 0.5f;
 
 
                 }
@@ -626,6 +806,17 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
             }
+            public void RunAnalysis()
+            {
+                CheckLouverType();
+
+                GetLoadDistributionRatio();
+
+
+
+            }
+
+
         }
 
     }

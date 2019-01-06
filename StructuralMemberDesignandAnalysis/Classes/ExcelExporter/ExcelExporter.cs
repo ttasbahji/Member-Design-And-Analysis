@@ -128,12 +128,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             {
                 //todo
             }
-            public void GenerateReadySectionLouverSheet(Louver.ReadySectionLouver ReadySectionLouver)
-            {
-                //todo
-
-
-            }
+          
             public void GenerateLouverAnchorsSheet(Louver.LouverAnchors LouverAnchors)
             {
 
@@ -156,13 +151,6 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
                         GenerateBuildUpLouverSheet(SubLouverMember as Louver.BuildUpLouver);
-
-
-                        break;
-                    case Louver.ReadySectionLouver ReadySectionLouver:
-
-
-                        GenerateReadySectionLouverSheet(SubLouverMember as Louver.ReadySectionLouver);
 
 
                         break;
