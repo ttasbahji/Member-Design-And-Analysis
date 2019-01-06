@@ -8,7 +8,7 @@ using StructuralMemberDesignandAnalysis.Classes;
 namespace StructuralMemberDesignandAnalysis.Classes
 
 {
-   public abstract class Member : DesignMemberInterface, AnalyticMemberInterface
+   public abstract class Member : DesignMemberInterface, AnalyticMemberInterface , MemberCycleInterface
     {
       public  Member() { }
         public float Width { get; set; }
@@ -76,5 +76,6 @@ namespace StructuralMemberDesignandAnalysis.Classes
         public abstract void AnalyticShearCapacity();
         public abstract void AnalyticTensionCapacity();
         public abstract void AnalyticCompressionCapacity();
+        public abstract void SetUpMember();
     }
 }

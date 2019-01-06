@@ -6,70 +6,57 @@ namespace StructuralMemberDesignandAnalysis.Classes
     {
         public Louver() { }
 
+        public Louver(LouverLoad louverLoad, LouverBlade loverBlade
+        , LouverAnchors northLouverAnchor, LouverAnchors eastLouverAnchor
+            , LouverAnchors westLouverAnchor, LouverAnchors southLouverAnchor)
+        {
+            LouverLoad = louverLoad;
+            LoverBlade = loverBlade;
+            NorthLouverAnchor = northLouverAnchor;
+            EastLouverAnchor = eastLouverAnchor;
+            WestLouverAnchor = westLouverAnchor;
+            SouthLouverAnchor = southLouverAnchor;
+        }
+
+
+        // two Way , One Way
+        public String LouverLoadType;
+
+
+       
+        LouverLoad LouverLoad;
+        LouverBlade LoverBlade;
+        LouverAnchors NorthLouverAnchor;
+        LouverAnchors EastLouverAnchor;
+        LouverAnchors WestLouverAnchor;
+        LouverAnchors SouthLouverAnchor;
+
         public class LouverBlade : ReadySection
         {
 
+            LouverLoad CurrentLouverLoad { set; get; }
+            LouverBladeProperty CurrentLouverBladeProperty { set; get; }
 
-
-
-            /// <summary>
-            /// Note to my tyseer , bro , Here the Db Will create the LoverBlade Object 
-            /// I Mean it Will the Give the Properties of the Blade Section by the name of the section UR Job BABy.
-            /// 
-            /// </summary>
-            public string Model { get; set; }
-            /// <summary>
-            /// Note tutu habibi : this the stuff u must specify to be albe to calculate the stuff for the ouver blade
-            /// </summary>
-            /// <param name="model">Model.</param>
-            /// <param name="material">Material.</param>
-            /// <param name="ix">Ix.</param>
-            /// <param name="iy">Iy.</param>
-            /// <param name="ic">Ic.</param>
-            /// <param name="sx">Sx.</param>
-            /// <param name="sy">Sy.</param>
-            /// <param name="sc">Sc.</param>
-            /// <param name="allowedServiceabilityDeflection">Allowed serviceability deflection.</param>
-            /// <param name="area">Area.</param>
-            /// <param name="depth">Depth.</param>
-            /// <param name="fy">Fy.</param>
-            /// <param name="wTr">W tr.</param>
-            /// <param name="γ">Γ.</param>
-            /// <param name="deflectionLimit">Deflection limit.</param>
-            /// <param name="horizentalPressure">Horizental pressure.</param>
-            /// <param name="lmax">Lmax.</param>
-            /// <param name="e">E.</param>
-            public LouverBlade(string model, string material, float ix, float iy, float ic, float sx, float sy, float sc, float allowedServiceabilityDeflection, float area, float depth, float fy, float wTr, float γ, float deflectionLimit, float horizentalPressure, float lmax, float e)
+          
+            public LouverBlade(float allowedServiceabilityDeflection, float deflectionLimit, float lmax, LouverBladeProperty CurrentLouverBlade,LouverLoad currentLouverLoad)
             {
-                Model = model;
-                Material = material;
-                Ix = ix;
-                Iy = iy;
-                Ic = ic;
-                Sx = sx;
-                Sy = sy;
-                Sc = sc;
+               
+              
                 AllowedServiceabilityDeflection = allowedServiceabilityDeflection;
-                Area = area;
-                Depth = depth;
-                Fy = fy;
-                WTr = wTr;
-                this.γ = γ;
+              
                 DeflectionLimit = deflectionLimit;
-                HorizentalPressure = horizentalPressure;
                 Lmax = lmax;
-                E = e;
+
+                CurrentLouverLoad = currentLouverLoad;
+                HorizentalPressure=currentLouverLoad.HorizentalDistributedLoad;
+                this.CurrentLouverBladeProperty = CurrentLouverBlade;
             }
+
+
 
             public string CalculationType { get; set; }
 
-            public float Ix { get; set; }
-            public float Iy { get; set; }
-            public float Ic { get; set; }
-
-            public float Sx { get; set; }
-            public float Sy { get; set; }
-            public float Sc { get; set; }
+          
 
             /// <summary>
             /// change according to code of design
@@ -78,25 +65,7 @@ namespace StructuralMemberDesignandAnalysis.Classes
             public float AllowedServiceabilityDeflection { get; set; }
 
 
-            public float Area { get; set; }
-            public float Depth { get; set; }
-
-            /// <summary>
-            /// design  
-            /// </summary>
-            /// <value>The fy.</value>
-            public float Fy { get; set; }
-            /// <summary>
-            /// tributary width
-            /// </summary>
-            /// <value>The WTr.</value>
-            public float WTr { get; set; }
-            /// <summary>
-            ///  is Unit Weight.
-            /// unit is Weight / Volume
-            /// </summary>
-            /// <value>The γ.</value>
-            public float γ { get; set; }
+          
 
 
             /// <summary>
@@ -115,7 +84,6 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
             public float Lmax { get; set; }
 
-            public float E { get; set; }
 
 
             public bool NeedBladeSupport { get; set; }
@@ -161,12 +129,12 @@ namespace StructuralMemberDesignandAnalysis.Classes
             {
                 // simple Supported BEam Assump
 
-                DistributedHorizentalLoad = HorizentalPressure * WTr;
+                DistributedHorizentalLoad = HorizentalPressure * CurrentLouverBladeProperty.WTr;
                 MaxBendingMoment = DistributedHorizentalLoad * Lmax * Lmax;
 
-                Mny = Fy * Sy;
-                Mnx = Fy * Sx;
-                Mnc = Fy * Sc;
+                Mny = CurrentLouverBladeProperty.Fy * CurrentLouverBladeProperty.Sy;
+                Mnx = CurrentLouverBladeProperty.Fy * CurrentLouverBladeProperty.Sx;
+                Mnc = CurrentLouverBladeProperty.Fy * CurrentLouverBladeProperty.Sc;
 
                 // check Moment 
                 MinimumMomentCapacity = Math.Min(Mny, Math.Min(Mnx, Mnx));
@@ -180,9 +148,9 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
                 // servicbility check
-                Δy = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Iy * 384));
-                Δx = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Ix * 384));
-                Δc = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (E * Ic * 384));
+                Δy = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (CurrentLouverBladeProperty.E * CurrentLouverBladeProperty.Iy * 384));
+                Δx = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (CurrentLouverBladeProperty.E * CurrentLouverBladeProperty.Ix * 384));
+                Δc = 5 * DistributedHorizentalLoad * ((Lmax * Lmax * Lmax * Lmax) / (CurrentLouverBladeProperty.E * CurrentLouverBladeProperty.Ic * 384));
 
                 MaxDeflection = Math.Max(Δy, Math.Max(Δx, Δc));
 
@@ -219,37 +187,37 @@ namespace StructuralMemberDesignandAnalysis.Classes
             void CheckSpacingDeflection()
             {
 
-                    LouverFilterData FilterData = new LouverFilterData();
+                LouverPassData FilterData = new LouverPassData();
 
-                    if (MaxDeflection < AllowedServiceabilityDeflection)
-                    {
+                if (MaxDeflection < AllowedServiceabilityDeflection)
+                {
 
-                        // Succeeded
-                        NeedBladeSupport = false;
-
-
-                        FilterData.CheckAddibilityLouverobject(this);
+                    // Succeeded
+                    NeedBladeSupport = false;
 
 
-                    }
-                    else
-                    {
+                    FilterData.CheckAddibilityLouverObject(this);
 
-                        // fail 
-                        NeedBladeSupport = true;
 
-                        FilterData.CheckAddibilityLouverobject(this.ShallowCopy());// since there is not object with in our louverblade
+                }
+                else
+                {
 
-                        //do again wtih different length
-                        DecreaseLourverLength();
+                    // fail 
+                    NeedBladeSupport = true;
+
+                    FilterData.CheckAddibilityLouverObject(this.DeepCopy());// since there is not object with in our louverblade
+
+                    //do again wtih different length
+                    DecreaseLourverLength();
 
                     if (CalculationType == MemberDesignText.CalculationType.GetCheckCalculationType)
                         return;
 
-                        CheckLoverBladeSupportNeed();
+                    CheckLoverBladeSupportNeed();
 
 
-                    }
+                }
 
 
 
@@ -263,9 +231,9 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
             // here the we decrease the Length
             void DecreaseLourverLength()
-            { 
-            // try again by dividing the length by two till u get the goal we all want
-            Lmax = Lmax / 2;
+            {
+                // try again by dividing the length by two till u get the goal we all want
+                Lmax = Lmax / 2;
 
             }
 
@@ -285,16 +253,253 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
 
-            public LouverBlade ShallowCopy()
+            public LouverBlade DeepCopy()
             {
                 LouverBlade LouverBlade = (LouverBlade)this.MemberwiseClone();
-               
+
+                LouverBlade.CurrentLouverBladeProperty = new LouverBladeProperty(CurrentLouverBladeProperty.Model, CurrentLouverBladeProperty.Material
+                , CurrentLouverBladeProperty.Ix, CurrentLouverBladeProperty.Iy, CurrentLouverBladeProperty.Ic, CurrentLouverBladeProperty.Sx,CurrentLouverBladeProperty.Sy,
+                    CurrentLouverBladeProperty.Sc, CurrentLouverBladeProperty.Area, CurrentLouverBladeProperty.Depth, CurrentLouverBladeProperty.E,CurrentLouverBladeProperty.Fy
+                , CurrentLouverBladeProperty.WTr,CurrentLouverBladeProperty.γ);
+
+                LouverBlade.CurrentLouverLoad = new LouverLoad(CurrentLouverLoad.HorizentalDistributedLoad);
+
+
                 return LouverBlade;
             }
+            // change to this bro
 
+            public class LouverBladeProperty
+            {
+                public LouverBladeProperty(string model, string material, float ix, float iy, float ic, float sx
+                , float sy, float sc, float area, float depth, float e, float fy, float wTr, float γ)
+                {
+                    Model = model;
+                    Material = material;
+                    Ix = ix;
+                    Iy = iy;
+                    Ic = ic;
+                    Sx = sx;
+                    Sy = sy;
+                    Sc = sc;
+                    Area = area;
+                    Depth = depth;
+                    E = e;
+                    Fy = fy;
+                    WTr = wTr;
+                    this.γ = γ;
+                }
+
+
+
+                /// <summary>
+                /// Note to my tyseer , bro , Here the Db Will create the LoverBlade Object 
+                /// I Mean it Will the Give the Properties of the Blade Section by the name of the section UR Job BABy.
+                /// 
+                /// </summary>
+                public string Model { get; set; }
+
+                public string Material { get; set; }
+
+                public float Ix { get; set; }
+                public float Iy { get; set; }
+                public float Ic { get; set; }
+
+                public float Sx { get; set; }
+                public float Sy { get; set; }
+                public float Sc { get; set; }
+
+
+                public float Area { get; set; }
+                public float Depth { get; set; }
+                public float E { get; set; }
+
+                /// <summary>
+                /// design  
+                /// </summary>
+                /// <value>The fy.</value>
+                public float Fy { get; set; }
+                /// <summary>
+                /// tributary width
+                /// </summary>
+                /// <value>The WTr.</value>
+                public float WTr { get; set; }
+                /// <summary>
+                ///  is Unit Weight.
+                /// unit is Weight / Volume
+                /// </summary>
+                /// <value>The γ.</value>
+                public float γ { get; set; }
+            }
+
+
+            }
+
+
+      
+
+        public class LouverAnchors : Connection
+        {
+
+            LouverLoad CurrentLouverLoad; 
+
+            public LouverAnchors(string markUpRefrence, string connectionLocation, string baseMaterial, string altMaterial
+            , ConnectionType connectionTypeBase, ConnectionType connectionTypeAlt , LouverLoad CurrentLouverLoad)
+            {
+                MarkUpRefrence = markUpRefrence;
+                ConnectionLocation = connectionLocation;
+                BaseMaterial = baseMaterial;
+                AltMaterial = altMaterial;
+                ConnectionTypeBase = connectionTypeBase;
+                ConnectionTypeAlt = connectionTypeAlt;
+
+                this.CurrentLouverLoad = CurrentLouverLoad;
+            }
+
+
+            // to from louver Side
+            public ConnectionType ConnectionTypeAlt { get; set; }
+
+            // to structure SIde
+            public ConnectionType ConnectionTypeBase { get; set; }
+
+
+            /// will be Calculated from Analyze method
+
+            public float ShearReaction { set; get; }
+
+            public float NormalReaction{ set; get; }
+
+            public float MomentReaction { set; get; }
+
+
+            /// <summary>
+            /// where u get the info from the drawings
+            /// </summary>
+            /// <value>The mark up refrence.</value>
+            public string MarkUpRefrence { get; set; }
+
+
+            /// <summary>
+            ///This Equal to Side in xls north ,east or west
+            /// </summary>
+            /// <value>The connection location.</value>
+            public string ConnectionLocation { get; set; }
+
+
+
+            ///note : bro when the user choose BaseMaterial or AltMaterial  (Gmc or concrete )the list of bolts or anchors will be generated according
+            /// to his choice
+
+            /// <summary>
+            /// GMC , Cracked Concrete
+            /// </summary>
+            /// <value>The base material.</value>
+            public string BaseMaterial { get; set; }
+
+            /// <summary>
+            /// #10-16 KWIK FLEX SELF DRILLING Etc                           
+            /// </summary>
+            /// <value>The alt material.</value>
+            public string AltMaterial { get; set; }
+
+            /// <summary>
+            /// 3/8" KWIK BOLT TZ   , #10-16 KWIK FLEX SELF DRILLING  ... ETC                                                  
+            /// </summary>
+            /// <value>The type of the connection.</value>
+            public class ConnectionType
+            {
+
+                public AnchorBoltProperties AnchorBoltProperty { set; get; }
+
+                public ConnectionType( AnchorBoltProperties anchorBoltsProperties )
+                {
+                    AnchorBoltProperty = anchorBoltsProperties;
+
+                }
+
+               
+                // From DB TUTu
+                public class AnchorBoltProperties 
+                {
+
+                    public AnchorBoltProperties(float dbt, float lbt, float lbe, float fuT, float fdT, float fuS, float fdS)
+                    {
+                        Dbt = dbt;
+                        Lbt = lbt;
+                        Lbe = lbe;
+                        FuT = fuT;
+                        FdT = fdT;
+                        FuS = fuS;
+                        FdS = fdS;
+                    }
+
+
+                    // b is bolt
+                    public float Dbt { get; set; }
+                    public float Lbt { get; set; }
+                    public float Lbe { get; set; }
+                    public float FuT { get; set; }
+                    public float FdT { get; set; }
+                    public float FuS { get; set; }
+                    public float FdS { get; set; }
+
+                }
+
+
+            }
+
+
+            void AnalyzeLouverLoad()
+            {
+
+
+            }
+
+
+
+            void CheckAnchorLoad()
+            {
+
+
+
+
+
+            }
+
+            void CheckInnerAnhcorSpacing()
+            {
+
+
+
+            }
+            void CheckEdgeAnchorSpacing()
+            {
+
+
+
+            }
+
+
+
+
+
+            public override void SetUpSubMember()
+            {
+                throw new NotImplementedException();
+            }
         }
 
 
+
+
+        public class BuildUpLouver : BuildUpSetion
+        {
+            public override void SetUpSubMember()
+            {
+                throw new NotImplementedException();
+            }
+        }
         public override void AnalyticCompressionCapacity()
         {
         }
@@ -327,68 +532,99 @@ namespace StructuralMemberDesignandAnalysis.Classes
         {
         }
 
-
-
-
-        public class LouverAnchors : Connection
+        public override void SetUpMember()
         {
 
-            /// <summary>
-            /// 3/8" KWIK BOLT TZ   , #10-16 KWIK FLEX SELF DRILLING  ... ETC                                                  
-            /// </summary>
-            /// <value>The type of the connection.</value>
-            public string ConnectionType { get; set; }
 
-            /// <summary>
-            /// where u get the info from the drawings
-            /// </summary>
-            /// <value>The mark up refrence.</value>
-            public string MarkUpRefrence { get; set; }
+            this.NorthLouverAnchor.SetUpSubMember();
+            this.SouthLouverAnchor.SetUpSubMember();
+            this.EastLouverAnchor.SetUpSubMember();
+            this.WestLouverAnchor.SetUpSubMember();
+            this.LoverBlade.SetUpSubMember();
 
 
-            /// <summary>
-            ///This Equal to Side in xls
-            /// </summary>
-            /// <value>The connection location.</value>
-            public string ConnectionLocation { get; set; }
-
-           
-
-            /// <summary>
-            /// GMC , Cracked Concrete
-            /// </summary>
-            /// <value>The base material.</value>
-            public string BaseMaterial { get; set; }
-
-            /// <summary>
-            /// #10-16 KWIK FLEX SELF DRILLING Etc                           
-            /// </summary>
-            /// <value>The alt material.</value>
-            public string AltMaterial { get; set; }
-
-
-
-
-
-            public override void SetUpSubMember()
-            {
-                throw new NotImplementedException();
-            }
         }
 
-        public class BuildUpLouver : BuildUpSetion
+        public class LouverFrame 
         {
-            public override void SetUpSubMember()
-            {
-                throw new NotImplementedException();
-            }
-        }
 
-        public class ReadySectionLouver : ReadySection
-        {
-            public override void SetUpSubMember()
+            public float Width { get; set; }
+            public float Height { get; set; }
+            public float Thickness { get; set; }
+            public string DistributionLoadType { get; set; }
+            public float NorthSideLoadRatio { get; set; }
+            public float SouthSideLoadRatio { get; set; }
+            public float EastSideLoadRatio { get; set; }
+            public float WestSideLoadRatio { get; set; }
+            public bool WidthIsLongest { get; set; } = false;
+            public float γ { get; set; }
+
+            void CheckLouverType()
             {
-                throw new NotImplementedException();
+
+
+                float LongestEdge = Math.Max(Height, Width);
+                float ShorterEdge = Math.Min(Height, Width);
+
+                if (Height < Width)
+                {
+
+                    WidthIsLongest = true;
+
+                }
+                var AspectRatio = LongestEdge / ShorterEdge;
+
+
+                if (AspectRatio > 1)
+                {
+
+                    DistributionLoadType = MemberDesignText.LouverStrings.OneWayLouverText;
+                }
+                else
+                {
+                    DistributionLoadType = MemberDesignText.LouverStrings.TwoWayLouverText;
+
+
+                }
+
+
+            }
+
+            void GetLoadDistributionRatio()
+            {
+
+                if (DistributionLoadType == MemberDesignText.LouverStrings.OneWayLouverText && WidthIsLongest)
+                {
+
+                    NorthSideLoadRatio = 0.5f;
+                    SouthSideLoadRatio = 0.5f;
+                    WestSideLoadRatio = 1;
+                    EastSideLoadRatio = 1;
+
+
+                }
+                else if (DistributionLoadType == MemberDesignText.LouverStrings.OneWayLouverText && !WidthIsLongest)
+                {
+                    NorthSideLoadRatio = 1;
+                    SouthSideLoadRatio = 1;
+                    WestSideLoadRatio = 0.5f;
+                    EastSideLoadRatio = 0.5f;
+
+                }
+                else
+                {
+
+
+                    NorthSideLoadRatio = 0.5f;
+                    SouthSideLoadRatio = 0.5f;
+                    WestSideLoadRatio = 0.5f;
+                    EastSideLoadRatio = 0.5f;
+
+
+                }
+
+
+
             }
         }
 

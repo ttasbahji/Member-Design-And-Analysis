@@ -4,18 +4,20 @@ using System.Collections.ObjectModel;
 
 namespace StructuralMemberDesignandAnalysis.Classes
 {
-    public class LouverFilterData
+    public class LouverPassData
 
     {
 
-        public LouverFilterData() { }
+        public LouverPassData() { }
 
 
         // this will be key and the object to iterate
         public static ObservableCollection<object> LouverList = new ObservableCollection<object>();
 
 
-        public void CheckAddibilityLouverobject(object SubLouverMember  )
+        public static ObservableCollection<Member> MemberList = new ObservableCollection<Member>();
+
+        public void CheckAddibilityLouverObject(object SubLouverMember)
         {
 
             switch (SubLouverMember)
@@ -79,6 +81,8 @@ namespace StructuralMemberDesignandAnalysis.Classes
 
 
         }
+
+
 
     }
 }
