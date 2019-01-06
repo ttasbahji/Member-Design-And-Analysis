@@ -94,17 +94,20 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Classes\appsettings.json" />
-    <None Include="Classes\DataModule\LouverFilterData.cs" />
+    <None Include="Classes\DataModule\LouverPassData.cs" />
     <None Include="Classes\ExcelExporter\ExcelExporter.cs" />
     <None Include="Classes\HelperMemberDesignAnalysis\HelperResultExporter.cs" />
+    <None Include="Classes\Loads\LouverLoad.cs" />
     <None Include="Classes\Louver\Louver.cs" />
     <None Include="Classes\Member\AnalyticMemberInterface.cs" />
     <None Include="Classes\Member\DesignMemberInterface.cs" />
     <None Include="Classes\Member\Member.cs" />
+    <None Include="Classes\Member\MemberCycleInterface.cs" />
     <None Include="Classes\Member\SubMemberCycleInterface.cs" />
     <None Include="Classes\MemberDesignSettings\MemberDesignSettings.cs" />
     <None Include="Classes\MemberDesignText\CalculationType.cs" />
     <None Include="Classes\MemberDesignText\ExportersTypes.cs" />
+    <None Include="Classes\MemberDesignText\LouverStrings.cs" />
     <None Include="Classes\MemberDesignText\UnitsType.cs" />
   </ItemGroup>
   <ItemGroup>
