@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-06-21T04:53:40.068Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="keVVXJxvXcbB_XCvEQ1_" version="13.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-06-22T04:49:22.736Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15" etag="6HikdD0f--NZQC95vYX4" version="13.3.0" type="github">
   <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
-    <mxGraphModel dx="788" dy="463" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="704" dy="572" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -92,13 +92,13 @@
             <mxRectangle x="40" y="600" width="130" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-65" value="+ ShearReaction : ShearReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
+        <mxCell id="_zbEI8j1RnfakeMwb99n-65" value="+ shear_reaction : ShearReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
           <mxGeometry y="26" width="300" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-76" value="+ MomentReaction : MomentReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
+        <mxCell id="_zbEI8j1RnfakeMwb99n-76" value="+ moment_reaction : MomentReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
           <mxGeometry y="52" width="300" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-77" value="+ NormalForceReaction : NormalForceReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
+        <mxCell id="_zbEI8j1RnfakeMwb99n-77" value="+ normal_force_reaction : NormalForceReaction Class&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
           <mxGeometry y="78" width="300" height="24" as="geometry" />
         </mxCell>
         <mxCell id="_zbEI8j1RnfakeMwb99n-67" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-64" vertex="1">
