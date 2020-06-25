@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-06-25T11:06:02.217Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="yw5glC2ONp7qsyP1hLbT" version="13.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-06-25T11:11:02.474Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="CwsvP14mgs6SKXaKp2_q" version="13.3.0" type="github">
   <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
-    <mxGraphModel dx="2201" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2427" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -182,23 +182,6 @@
         <mxCell id="Kn86qIgBI510Nvri95tI-8" value="Note:&lt;br&gt;&lt;br&gt;- mean private&lt;br&gt;+ means public&lt;br&gt;# means protected&lt;br&gt;~ means instance of other package" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=0;" parent="1" vertex="1">
           <mxGeometry x="40" y="30" width="200" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-15" value="ElasticModulus" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="2020" y="720" width="330" height="130" as="geometry">
-            <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-16" value="+ radius_of_gyration : float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
-          <mxGeometry y="26" width="330" height="32" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
-          <mxGeometry y="58" width="330" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-18" value="+ get_ radius_of_gyration: float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
-          <mxGeometry y="66" width="330" height="32" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-19" value="+ set_ radius_of_gyration(radius_of_gyration) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
-          <mxGeometry y="98" width="330" height="32" as="geometry" />
-        </mxCell>
         <mxCell id="Kn86qIgBI510Nvri95tI-1" value="Area" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="-110" y="1590" width="440" height="224" as="geometry">
             <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
@@ -323,7 +306,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1820" y="965" />
-              <mxPoint x="1820" y="781" />
+              <mxPoint x="1820" y="805" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -358,6 +341,23 @@
         </mxCell>
         <mxCell id="VRvT_82TDjzZKGFFMCo5-39" value="+ get_isotropy(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
           <mxGeometry y="170" width="300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-15" value="ElasticModulus" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="750" width="330" height="124" as="geometry">
+            <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-41" value="+ elastic_modulus : float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
+          <mxGeometry y="26" width="330" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
+          <mxGeometry y="52" width="330" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-18" value="+ get_elastic_modulus() : float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
+          <mxGeometry y="60" width="330" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-19" value="+ set_elastic_modulus(elastic_modulus : float) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-15">
+          <mxGeometry y="92" width="330" height="32" as="geometry" />
         </mxCell>
         <mxCell id="Kn86qIgBI510Nvri95tI-25" value="FirstMomentOfArea" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="890" y="1684" width="470" height="130" as="geometry">
