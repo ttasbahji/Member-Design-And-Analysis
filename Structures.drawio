@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-06-25T11:34:23.991Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="MiYNelYdoWz5pTx-tTZh" version="13.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-06-25T11:37:15.003Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="fprwxpXFeCfr1JLdyR-8" version="13.3.0" type="github">
   <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
     <mxGraphModel dx="2427" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
       <root>
@@ -76,7 +76,12 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="qBZ1eI56zBt9fNVnqdhr-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=open;endFill=0;endSize=20;" parent="1" source="_zbEI8j1RnfakeMwb99n-30" target="_zbEI8j1RnfakeMwb99n-40" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="890" />
+              <mxPoint x="1275" y="890" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="qBZ1eI56zBt9fNVnqdhr-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=none;startFill=0;endArrow=open;endFill=0;endSize=20;" parent="1" source="_zbEI8j1RnfakeMwb99n-30" target="_zbEI8j1RnfakeMwb99n-51" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -305,6 +310,7 @@
         <mxCell id="VRvT_82TDjzZKGFFMCo5-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.01;entryY=0.429;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=open;endFill=0;endSize=16;strokeWidth=1;" edge="1" parent="1" source="_zbEI8j1RnfakeMwb99n-40" target="VRvT_82TDjzZKGFFMCo5-17">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
+              <mxPoint x="1320" y="965" />
               <mxPoint x="1820" y="965" />
               <mxPoint x="1820" y="805" />
             </Array>
@@ -316,34 +322,8 @@
         <mxCell id="VRvT_82TDjzZKGFFMCo5-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;endSize=16;strokeWidth=1;" edge="1" parent="1" source="_zbEI8j1RnfakeMwb99n-40" target="VRvT_82TDjzZKGFFMCo5-21">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-40" value="Material " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="1500" y="900" width="300" height="202" as="geometry">
-            <mxRectangle x="40" y="200" width="80" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-41" value="+ elastic_modulus : ElasticModulus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
-          <mxGeometry y="26" width="300" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-47" value="+ shear_modulus : ShearModulus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
-          <mxGeometry y="52" width="300" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-48" value="+ material_strength : MaterialStrength" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
-          <mxGeometry y="78" width="300" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="_zbEI8j1RnfakeMwb99n-50" value="+ isotropy: Bool&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
-          <mxGeometry y="104" width="300" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-38" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
-          <mxGeometry y="130" width="300" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-40" value="+ set_isotropy(bool) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
-          <mxGeometry y="138" width="300" height="32" as="geometry" />
-        </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-39" value="+ get_isotropy(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
-          <mxGeometry y="170" width="300" height="32" as="geometry" />
-        </mxCell>
         <mxCell id="VRvT_82TDjzZKGFFMCo5-15" value="ElasticModulus" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="2020" y="750" width="330" height="124" as="geometry">
+          <mxGeometry x="2040" y="750" width="330" height="124" as="geometry">
             <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -427,25 +407,52 @@
         <mxCell id="Kn86qIgBI510Nvri95tI-17" value="+ set_polar_moment_of_inertia(polar_moment_of_inertia:float) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="Kn86qIgBI510Nvri95tI-14" vertex="1">
           <mxGeometry y="98" width="470" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-27" value="ShearModulus" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="2020" y="1000" width="330" height="130" as="geometry">
-            <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
+        <mxCell id="_zbEI8j1RnfakeMwb99n-40" value="Material " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="1070" y="1130" width="410" height="392" as="geometry">
+            <mxRectangle x="40" y="200" width="80" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-28" value="+ shear_modulus : float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
-          <mxGeometry y="26" width="330" height="32" as="geometry" />
+        <mxCell id="_zbEI8j1RnfakeMwb99n-41" value="+ elastic_modulus : ElasticModulus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
+          <mxGeometry y="26" width="410" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
-          <mxGeometry y="58" width="330" height="8" as="geometry" />
+        <mxCell id="_zbEI8j1RnfakeMwb99n-47" value="+ shear_modulus : ShearModulus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
+          <mxGeometry y="52" width="410" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-30" value="+ get_shear_modulus(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
-          <mxGeometry y="66" width="330" height="32" as="geometry" />
+        <mxCell id="_zbEI8j1RnfakeMwb99n-48" value="+ material_strength : MaterialStrength" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
+          <mxGeometry y="78" width="410" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="VRvT_82TDjzZKGFFMCo5-31" value="+ set_shear_modulus(shear_modulus : float) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
-          <mxGeometry y="98" width="330" height="32" as="geometry" />
+        <mxCell id="_zbEI8j1RnfakeMwb99n-50" value="+ isotropy: Bool&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_zbEI8j1RnfakeMwb99n-40" vertex="1">
+          <mxGeometry y="104" width="410" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-38" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="130" width="410" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-40" value="+ set_isotropy(bool) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="138" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-43" value="+ get_isotropy(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="170" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-42" value="+ set_isotropy(bool) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="202" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-39" value="+ get_isotropy(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="234" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-45" value="+ get_shear_modulus(): ShearModulus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="266" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-44" value="+ set_shear_modulus( shear_modulus : ShearModulus) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="298" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-47" value="+ set_isotropy(bool) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="328" width="410" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-46" value="+ get_isotropy(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="_zbEI8j1RnfakeMwb99n-40">
+          <mxGeometry y="360" width="410" height="32" as="geometry" />
         </mxCell>
         <mxCell id="VRvT_82TDjzZKGFFMCo5-21" value="MaterialStrength" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="1810" y="1220" width="330" height="130" as="geometry">
+          <mxGeometry x="1930" y="1360" width="330" height="130" as="geometry">
             <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -459,6 +466,23 @@
           <mxGeometry y="66" width="330" height="32" as="geometry" />
         </mxCell>
         <mxCell id="VRvT_82TDjzZKGFFMCo5-25" value="+ set_radius_of_gyration(radius_of_gyration) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-21">
+          <mxGeometry y="98" width="330" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-27" value="ShearModulus" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="2050" y="1030" width="330" height="130" as="geometry">
+            <mxRectangle x="40" y="40" width="80" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-28" value="+ shear_modulus : float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
+          <mxGeometry y="26" width="330" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
+          <mxGeometry y="58" width="330" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-30" value="+ get_shear_modulus(): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
+          <mxGeometry y="66" width="330" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="VRvT_82TDjzZKGFFMCo5-31" value="+ set_shear_modulus(shear_modulus : float) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" vertex="1" parent="VRvT_82TDjzZKGFFMCo5-27">
           <mxGeometry y="98" width="330" height="32" as="geometry" />
         </mxCell>
       </root>
